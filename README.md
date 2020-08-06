@@ -1,2 +1,2 @@
 # Sangam-2018-19
-An Intra-College Hackathon conducted by Pragyan NIT Trichy. Focussed on developing Smart Electric meter.Emerged as the only first year finalists in the competition
+Sangam'18 is an ISO certified intra-collegiate technical hardware hackathon conducted by Pragyan, NIT Trichy. Focussed on developing Smart Electric meter with multiple energy tracking and consumption reduction capabilities for consumer consumption.Emerged as the sole freshman finalists in the competition.
