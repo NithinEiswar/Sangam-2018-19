@@ -10,35 +10,27 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 old =0.000
 flag_90=1
-flag_180=1
-r=urllib2.urlopen("http://192.168.43.52/turnon")
-def send_sms_90(data):
-    r=urllib2.urlopen("http://maker.ifttt.com/trigger/ALERT/with/key/cQFfITupZu3MauI66qhUAd?")
-    print ("90 sms sent")
-def send_sms_180(data):
-    r=urllib2.urlopen("http://maker.ifttt.com/trigger/ALERT!/with/key/cQFfITupZu3MauI66qhUAd" )
-    print ("180 sms sent")
+r=urllib2.urlopen("http://192.168.43.50/turnon")
+def send_sms(data):
+    r=urllib2.urlopen("http://maker.ifttt.com/trigger/SANGAM/with/key/ePp1m2qLRCKYTpRpFPtnxmlSnZF7JTX5Zh8_fHvj52t?value1="+ str(data) )
+    
 while(1):
-    data = urllib2.urlopen("http://192.168.43.52/data.txt").read(5)
+    data = urllib2.urlopen("http://192.168.43.50/data.txt").read(5)
     value = float(data)
     sql = "SELECT payed FROM consumer WHERE id = 2"
     mycursor.execute(sql)
     for x in mycursor:
         #print(x);
         if(x==(0,)):
-            r=urllib2.urlopen("http://192.168.43.52/turnoff")
+            r=urllib2.urlopen("http://192.168.43.50/turnoff")
         time.sleep(2)    
             
     mydb.commit()
 
 
     if (old!=value):
-        if(value<=181 and value>=180 and flag_180==1):
-            send_sms_180(value)
-            flag_90+=1
-            flag_180+=1
-        elif(value<=91 and value>=90 and flag_90==1):
-            send_sms_90(value)
+        if(value>90 and flag_90==1):
+            send_sms(value)
             flag_90+=1
         sql = "UPDATE consumer SET units = %s WHERE id = %s"
         val = (value, 2)
